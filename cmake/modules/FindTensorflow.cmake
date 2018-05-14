@@ -25,7 +25,7 @@ if(scram_path)
     string(REGEX MATCH "\nINCLUDE=([^\n]*)" E_STR ${SCRAM_E_INFO})
     list(APPEND Tensorflow_INCLUDE_DIRS ${CMAKE_MATCH_1})
 
-    message(FATAL_ERROR "Tensorflow_LIBRARIES: '${Tensorflow_LIBRARIES}'.")
+    message(FATAL_ERROR "Tensorflow_LIBRARIES: '${Tensorflow_LIBRARY_DIRS}'.")
 else()
     #find_package(Boost REQUIRED COMPONENTS ${BoostEx_FIND_COMPONENTS})
 endif()
