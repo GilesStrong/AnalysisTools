@@ -7,6 +7,13 @@ if(scram_path)
     set(Tensorflow_LIBRARY_DIRS "${CMAKE_MATCH_1}")
     set(Tensorflow_LIBRARIES "${Tensorflow_LIBRARY_DIRS}/libtensorflow_cc.so")
 
+    execute_process(COMMAND scram tool info tensorflow-c OUTPUT_VARIABLE SCRAM_TFC_INFO)
+    string(REGEX MATCH "\nINCLUDE=([^\n]*)" TFC_STR ${SCRAM_TFC_INFO})
+    list(APPEND Tensorflow_INCLUDE_DIRS ${CMAKE_MATCH_1})
+    string(REGEX MATCH "\nLIBDIR=([^\n]*)" TFC_STR ${SCRAM_TFC_INFO})
+    list(APPEND Tensorflow_LIBRARY_DIRS ${CMAKE_MATCH_1})
+    list(APPEND Tensorflow_LIBRARIES "${CMAKE_MATCH_1}/libtensorflow.so")
+
     execute_process(COMMAND scram tool info protobuf OUTPUT_VARIABLE SCRAM_PB_INFO)
     string(REGEX MATCH "\nINCLUDE=([^\n]*)" PB_STR ${SCRAM_PB_INFO})
     list(APPEND Tensorflow_INCLUDE_DIRS ${CMAKE_MATCH_1})
