@@ -1,0 +1,6 @@
+find_file(scram_path "scram")
+if(scram_path)
+    execute_process(COMMAND scram tool info Eigen OUTPUT_VARIABLE SCRAM_E_INFO)
+    string(REGEX MATCH "\nINCLUDE=([^\n]*)" E_STR ${SCRAM_E_INFO})
+    set(Eigen_INCLUDE_DIRS "${CMAKE_MATCH_1}")
+endif()

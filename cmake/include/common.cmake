@@ -2,20 +2,28 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${AnalysisTools_DIR}/cmake/modules")
 
 find_package(ROOT REQUIRED COMPONENTS Core Hist RIO Tree Physics Graf Gpad Matrix MathCore GenVector TMVA RooFitCore)
 find_package(BoostEx REQUIRED COMPONENTS program_options filesystem regex system thread iostreams unit_test_framework)
-find_package(Tensorflow)
-include_directories(SYSTEM ${Boost_INCLUDE_DIRS} ${ROOT_INCLUDE_DIR} ${Tensorflow_INCLUDE_DIRS})
-set(ALL_LIBS ${Boost_LIBRARIES} ${ROOT_LIBRARIES} ${Tensorflow_LIBRARIES} pthread)
+find_package(Tensorflow-cc)
+find_package(Tensorflow-c)
+find_package(Eigen)
+find_package(Protobuf)
+include_directories(SYSTEM ${Boost_INCLUDE_DIRS} ${ROOT_INCLUDE_DIR} ${Tensorflow-cc_INCLUDE_DIRS} ${Tensorflow-c_INCLUDE_DIRS} ${Eigen_INCLUDE_DIRS} ${Protobuf_INCLUDE_DIRS})
+set(ALL_LIBS ${Boost_LIBRARIES} ${ROOT_LIBRARIES} ${Tensorflow-cc_LIBRARIES} ${Tensorflow-c_LIBRARIES} ${Protobuf_LIBRARIES} pthread)
 
 message(${Boost_LIBRARIES})
 message(${ROOT_LIBRARIES})
-message(${Tensorflow_LIBRARIES})
+message(${Tensorflow-cc_LIBRARIES})
+message(${Tensorflow-c_LIBRARIES})
+message(${Protobuf_LIBRARIES})
+
 
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
-SET(CMAKE_INSTALL_RPATH "${Boost_LIBRARY_DIRS};${ROOT_LIBRARY_DIR};${Tensorflow_LIBRARY_DIRS}")
+SET(CMAKE_INSTALL_RPATH "${Boost_LIBRARY_DIRS};${ROOT_LIBRARY_DIR};${Tensorflow-cc_LIBRARY_DIRS};${Tensorflow-c_LIBRARY_DIRS};${Protobuf_LIBRARY_DIRS}")
 
 message(${Boost_LIBRARY_DIRS})
 message(${ROOT_LIBRARY_DIR})
-message(${Tensorflow_LIBRARY_DIRS})
+message(${Tensorflow-cc_LIBRARY_DIRS})
+message(${Tensorflow-c_LIBRARY_DIRS})
+message(${Protobuf_LIBRARY_DIRS})
 
 execute_process(COMMAND root-config --incdir OUTPUT_VARIABLE ROOT_INCLUDE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
 
