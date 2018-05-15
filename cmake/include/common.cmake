@@ -6,6 +6,9 @@ find_package(Tensorflow)
 include_directories(SYSTEM ${Boost_INCLUDE_DIRS} ${ROOT_INCLUDE_DIR} ${Tensorflow_INCLUDE_DIRS})
 set(ALL_LIBS ${Boost_LIBRARIES} ${ROOT_LIBRARIES} ${Tensorflow_LIBRARIES} pthread)
 
+message(${Boost_LIBRARIES})
+message(${Tensorflow_LIBRARIES})
+
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 SET(CMAKE_INSTALL_RPATH "${Boost_LIBRARY_DIRS};${ROOT_LIBRARY_DIR};${Tensorflow_LIBRARY_DIRS}")
 
