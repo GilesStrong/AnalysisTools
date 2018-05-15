@@ -13,6 +13,10 @@ message(${Tensorflow_LIBRARIES})
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 SET(CMAKE_INSTALL_RPATH "${Boost_LIBRARY_DIRS};${ROOT_LIBRARY_DIR};${Tensorflow_LIBRARY_DIRS}")
 
+message(${Boost_LIBRARY_DIRS})
+message(${ROOT_LIBRARY_DIR})
+message(${Tensorflow_LIBRARY_DIRS})
+
 execute_process(COMMAND root-config --incdir OUTPUT_VARIABLE ROOT_INCLUDE_PATH OUTPUT_STRIP_TRAILING_WHITESPACE)
 
 find_file(scram_path "scram")
