@@ -10,7 +10,6 @@ This file is part of https://github.com/hh-italian-group/AnalysisTools. */
 #include <TClass.h>
 #include <TLorentzVector.h>
 #include <TMatrixD.h>
-#include <TMatrixDEigen.h>
 #include <TFile.h>
 #include <Compression.h>
 

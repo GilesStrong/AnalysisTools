@@ -47,7 +47,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CXX_COMMON_FLAGS} -g")
 
 set(LinkDef "${AnalysisTools_DIR}/Core/include/LinkDef.h")
 set(RootDict "${CMAKE_BINARY_DIR}/RootDictionaries.cpp")
-set(RootDictIncludes "Math/LorentzVector.h" "Math/PtEtaPhiM4D.h" "Math/PtEtaPhiE4D.h" "Math/PxPyPzM4D.h")
+set(RootDictIncludes "Math/LorentzVector.h" "Math/PtEtaPhiM4D.h" "Math/PtEtaPhiE4D.h" "Math/PxPyPzM4D.h" "Math/TMatrixT.h")
 add_custom_command(OUTPUT "${RootDict}"
                    COMMAND rootcling -f "${RootDict}" ${RootDictIncludes} "${LinkDef}"
                    IMPLICIT_DEPENDS CXX "${LinkDef}"
