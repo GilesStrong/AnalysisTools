@@ -7,6 +7,7 @@ include_directories(SYSTEM ${Boost_INCLUDE_DIRS} ${ROOT_INCLUDE_DIR} ${Tensorflo
 set(ALL_LIBS ${Boost_LIBRARIES} ${ROOT_LIBRARIES} ${Tensorflow_LIBRARIES} pthread)
 
 message(${Boost_LIBRARIES})
+message(${ROOT_LIBRARIES})
 message(${Tensorflow_LIBRARIES})
 
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
@@ -47,7 +48,7 @@ set(CMAKE_CXX_FLAGS_DEBUG "${CXX_COMMON_FLAGS} -g")
 
 set(LinkDef "${AnalysisTools_DIR}/Core/include/LinkDef.h")
 set(RootDict "${CMAKE_BINARY_DIR}/RootDictionaries.cpp")
-set(RootDictIncludes "Math/LorentzVector.h" "Math/PtEtaPhiM4D.h" "Math/PtEtaPhiE4D.h" "Math/PxPyPzM4D.h" "Math/TMatrixT.h")
+set(RootDictIncludes "Math/LorentzVector.h" "Math/PtEtaPhiM4D.h" "Math/PtEtaPhiE4D.h" "Math/PxPyPzM4D.h")
 add_custom_command(OUTPUT "${RootDict}"
                    COMMAND rootcling -f "${RootDict}" ${RootDictIncludes} "${LinkDef}"
                    IMPLICIT_DEPENDS CXX "${LinkDef}"
