@@ -47,14 +47,14 @@ list(FILTER SCRIPT_LIST EXCLUDE REGEX "/__init__\\.py$")
 file(GLOB_RECURSE CONFIG_LIST "*.cfg" "*.xml" "*.txt" "*.md")
 
 set(CMAKE_CXX_COMPILER gcc)
-set(CXX_WARNING_FLAGS "-Wno-missing-prototypes -Wno-unused-member-function -Wno-weak-vtables \
+set(CXX_WARNING_FLAGS "-Wno-unused-member-function -Wno-weak-vtables \
                        -Wno-documentation -Wno-gnu-zero-variadic-macro-arguments -Wno-global-constructors \
                        -Wno-exit-time-destructors -Wno-newline-eof -Wno-c++98-compat-pedantic \
                        -Wno-c++98-compat -Wno-disabled-macro-expansion -Wno-system-headers -Wno-unused-macros \
                        -Wno-shadow -Wno-unknown-pragmas -Wno-format-nonliteral -Wno-double-promotion -Wno-float-equal \
                        -Wno-padded -Wno-missing-braces")
 # -ftime-report
-set(CXX_COMMON_FLAGS "-std=c++14 -pedantic ${CXX_WARNING_FLAGS}")
+set(CXX_COMMON_FLAGS "-std=c++14 -pedantic ${CXX_WARNING_FLAGS} -ldl")
 set(CMAKE_CXX_FLAGS "${CXX_COMMON_FLAGS} -O3")
 set(CMAKE_CXX_FLAGS_DEBUG "${CXX_COMMON_FLAGS} -g")
 
