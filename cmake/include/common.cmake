@@ -16,7 +16,7 @@ message(${Protobuf_LIBRARIES})
 
 
 SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
-SET(CMAKE_INSTALL_RPATH "${Boost_LIBRARY_DIRS};${ROOT_LIBRARY_DIR};${Tensorflow-cc_LIBRARY_DIRS};${Tensorflow-c_LIBRARY_DIRS};${Protobuf_LIBRARY_DIRS};$ENV{CMSSW_RELEASE_BASE}/lib")
+SET(CMAKE_INSTALL_RPATH "${Boost_LIBRARY_DIRS};${ROOT_LIBRARY_DIR};${Tensorflow-cc_LIBRARY_DIRS};${Tensorflow-c_LIBRARY_DIRS};${Protobuf_LIBRARY_DIRS};$ENV{CMSSW_RELEASE_BASE}/lib/slc6_amd64_gcc630")
 
 message(${Boost_LIBRARY_DIRS})
 message(${ROOT_LIBRARY_DIR})
@@ -34,6 +34,8 @@ else()
 endif()
 
 set(ALL_LIBS ${Boost_LIBRARIES} ${ROOT_LIBRARIES} ${Tensorflow-cc_LIBRARIES} ${Tensorflow-c_LIBRARIES} ${Protobuf_LIBRARIES} pthread $ENV{CMSSW_RELEASE_BASE}/lib/slc6_amd64_gcc630/libDNNTensorFlow.so)
+
+link_directories($ENV{CMSSW_RELEASE_BASE}/lib)
 
 include_directories(SYSTEM "${CMSSW_RELEASE_BASE_SRC}")
 
@@ -76,6 +78,7 @@ foreach(exe_source ${EXE_SOURCE_LIST})
     message("Adding executable \"${exe_name}\"...")
     add_executable("${exe_name}" "${exe_source}" "${RootDict}")
     add_dependencies("${exe_name}" GenerateRootDict)
+    target_link_libraries("${exe_name}" libDNNTensorFlow.so)
     target_link_libraries("${exe_name}" ${ALL_LIBS})
     if(exe_name MATCHES "_t$")
         list(APPEND TEST_LIST "${exe_name}")
